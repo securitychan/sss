@@ -10,8 +10,8 @@ const assetLabels = {
   mu: "MU",
   soxl: "SOXL",
   msci: "MSCI World ETF",
-  sox: "Philadelphia Semi",
-  dram: "Roundhill Memory ETF",
+  sox: "SOXX",
+  dram: "DRAM",
   market: "전체 시장",
 };
 

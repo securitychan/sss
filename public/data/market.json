@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-27T22:36:57.779Z",
+  "generatedAt": "2026-06-27T23:08:29.597Z",
   "source": "Yahoo Finance chart API",
   "assets": {
     "kospi": {
@@ -12,7 +12,7 @@
       "currency": "KRW",
       "sourceSymbol": "^KS11",
       "exchangeName": "KSC",
-      "fetchedAt": "2026-06-27T22:36:56.490Z",
+      "fetchedAt": "2026-06-27T23:08:26.284Z",
       "marketTime": "2026-06-26T09:05:40.000Z",
       "latest": {
         "date": "2026-06-26",
@@ -11034,7 +11034,7 @@
       "currency": "USD",
       "sourceSymbol": "MU",
       "exchangeName": "NMS",
-      "fetchedAt": "2026-06-27T22:36:56.786Z",
+      "fetchedAt": "2026-06-27T23:08:26.559Z",
       "marketTime": "2026-06-26T20:00:01.000Z",
       "latest": {
         "date": "2026-06-26",
@@ -19850,7 +19850,7 @@
       "currency": "USD",
       "sourceSymbol": "SOXL",
       "exchangeName": "PCX",
-      "fetchedAt": "2026-06-27T22:36:57.096Z",
+      "fetchedAt": "2026-06-27T23:08:27.826Z",
       "marketTime": "2026-06-26T20:00:00.000Z",
       "latest": {
         "date": "2026-06-26",
@@ -28667,7 +28667,7 @@
       "note": "MSCI World exposure proxy via URTH",
       "sourceSymbol": "URTH",
       "exchangeName": "PCX",
-      "fetchedAt": "2026-06-27T22:36:57.370Z",
+      "fetchedAt": "2026-06-27T23:08:28.143Z",
       "marketTime": "2026-06-26T20:00:00.000Z",
       "latest": {
         "date": "2026-06-26",
@@ -37477,13 +37477,13 @@
       "id": "sox",
       "symbol": "^SOX",
       "name": "PHLX Semiconductor Index",
-      "displayName": "Philadelphia Semi",
+      "displayName": "SOXX",
       "kind": "index",
       "range": "5y",
       "currency": "USD",
       "sourceSymbol": "^SOX",
       "exchangeName": "NIM",
-      "fetchedAt": "2026-06-27T22:36:57.652Z",
+      "fetchedAt": "2026-06-27T23:08:29.380Z",
       "marketTime": "2026-06-26T21:15:59.000Z",
       "latest": {
         "date": "2026-06-26",
@@ -46293,13 +46293,13 @@
       "id": "dram",
       "symbol": "DRAM",
       "name": "Roundhill Memory ETF",
-      "displayName": "Roundhill Memory ETF",
+      "displayName": "DRAM",
       "kind": "memory-etf",
       "range": "5y",
       "currency": "USD",
       "sourceSymbol": "DRAM",
       "exchangeName": "BTS",
-      "fetchedAt": "2026-06-27T22:36:57.779Z",
+      "fetchedAt": "2026-06-27T23:08:29.597Z",
       "marketTime": "2026-06-26T20:00:01.000Z",
       "latest": {
         "date": "2026-06-26",
