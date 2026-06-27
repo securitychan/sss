@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MU · SOXL · KOSPI 전략 대시보드</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Memory & Semiconductor Strategy Board</p>
+          <h1>MU · SOXL · KOSPI 현황</h1>
+          <p class="lede">KOSPI 이격도와 메모리·반도체 핵심 지표를 한 화면에서 보고, 상황별 전략을 저장하고 수정합니다.</p>
+        </div>
+        <button class="icon-button" id="refreshButton" type="button" aria-label="새로고침">
+          <span aria-hidden="true">↻</span>
+        </button>
+      </header>
+
+      <section class="overview-grid" id="overviewGrid" aria-label="시장 현황"></section>
+
+      <section class="kospi-grid">
+        <article class="panel kospi-summary">
+          <div class="panel-header">
+            <div>
+              <h2>KOSPI 50일 이격도</h2>
+              <p id="kospiCaption">데이터를 불러오는 중입니다.</p>
+            </div>
+            <span class="zone-badge" id="kospiZone">--</span>
+          </div>
+          <strong class="disparity-value" id="kospiDisparity">--%</strong>
+          <div class="gauge" aria-hidden="true">
+            <div class="gauge-track">
+              <span class="threshold threshold-105">105</span>
+              <span class="threshold threshold-120">120</span>
+              <span class="threshold threshold-130">130</span>
+              <span class="gauge-fill" id="gaugeFill"></span>
+              <span class="gauge-pin" id="gaugePin"></span>
+            </div>
+          </div>
+          <div class="zone-scale">
+            <span>과열해소 ≤105</span>
+            <span>정상 105-120</span>
+            <span>경계 120-130</span>
+            <span>과열 ≥130</span>
+          </div>
+        </article>
+
+        <article class="panel active-strategy">
+          <div class="panel-header">
+            <div>
+              <h2>현재 전략</h2>
+              <p>현재 KOSPI 구간과 반도체 흐름에 맞는 전략을 표시합니다.</p>
+            </div>
+          </div>
+          <div id="activeStrategies" class="active-list"></div>
+        </article>
+      </section>
+
+      <section class="chart-grid">
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>KOSPI & 50일선</h2>
+              <p id="kospiChartCaption">최근 흐름을 표시합니다.</p>
+            </div>
+          </div>
+          <canvas id="kospiChart" width="960" height="340"></canvas>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>반도체·메모리 상대 흐름</h2>
+              <p>최근 6개월 수익률을 100 기준으로 비교합니다.</p>
+            </div>
+          </div>
+          <canvas id="relativeChart" width="960" height="340"></canvas>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>지표 테이블</h2>
+            <p id="dataSource">데이터 출처를 확인하는 중입니다.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>항목</th>
+                <th>기준일</th>
+                <th>현재가</th>
+                <th>1일</th>
+                <th>5일</th>
+                <th>1개월</th>
+                <th>3개월</th>
+                <th>상태</th>
+              </tr>
+            </thead>
+            <tbody id="marketTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="strategy-layout">
+        <article class="panel strategy-editor">
+          <div class="panel-header">
+            <div>
+              <h2>전략 추가·수정</h2>
+              <p>전략은 이 브라우저에 저장됩니다.</p>
+            </div>
+            <button class="ghost-button" id="newStrategy" type="button">새 전략</button>
+          </div>
+          <form id="strategyForm">
+            <input id="strategyId" type="hidden" />
+            <label>
+              연결 지표
+              <select id="strategyAsset">
+                <option value="kospi">KOSPI</option>
+                <option value="mu">MU</option>
+                <option value="soxl">SOXL</option>
+                <option value="msci">MSCI World ETF</option>
+                <option value="sox">Philadelphia Semi</option>
+                <option value="dram">Roundhill Memory ETF</option>
+                <option value="market">전체 시장</option>
+              </select>
+            </label>
+            <label>
+              조건
+              <select id="strategyTrigger">
+                <option value="cooled">KOSPI ≤105</option>
+                <option value="normal">KOSPI 105-120</option>
+                <option value="warning">KOSPI 120-130</option>
+                <option value="overheated">KOSPI ≥130</option>
+                <option value="uptrend">상승 추세</option>
+                <option value="downtrend">하락 추세</option>
+                <option value="volatility">변동성 확대</option>
+                <option value="watch">관찰</option>
+              </select>
+            </label>
+            <label>
+              전략 이름
+              <input id="strategyTitle" type="text" autocomplete="off" />
+            </label>
+            <label>
+              대응 방식
+              <select id="strategyStance">
+                <option value="관찰">관찰</option>
+                <option value="분할매수">분할매수</option>
+                <option value="추세추종">추세추종</option>
+                <option value="비중축소">비중축소</option>
+                <option value="현금확대">현금확대</option>
+                <option value="헤지">헤지</option>
+              </select>
+            </label>
+            <label>
+              실행 체크리스트
+              <textarea id="strategyChecklist" rows="5"></textarea>
+            </label>
+            <label>
+              메모
+              <textarea id="strategyMemo" rows="3"></textarea>
+            </label>
+            <div class="form-actions">
+              <button class="primary-button" type="submit">저장</button>
+              <button class="danger-button" id="deleteStrategy" type="button">삭제</button>
+              <button class="ghost-button" id="restoreDefaults" type="button">기본 전략 복원</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>저장된 전략</h2>
+              <p>상황이 바뀌면 여기서 기존 전략을 바로 열어 수정합니다.</p>
+            </div>
+          </div>
+          <div id="strategyList" class="strategy-list"></div>
+        </article>
+      </section>
+
+      <footer class="footer-note">
+        데이터는 Yahoo Finance 공개 차트 데이터를 사용합니다. MSCI World는 Yahoo에서 안정적으로 조회되는 URTH ETF를 대용 지표로 표시합니다.
+      </footer>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
